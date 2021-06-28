@@ -14,9 +14,9 @@ def parse_args():
     parser = argparse.ArgumentParser(description='ROI Extraction from HCP Data')
 
     parser.add_argument('--subject', type=str, default=None, help='HCP subject number')
-    parser.add_argument('--profile_name', type=str, default=None, help='HCP subject number')
-    parser.add_argument('--bucket', type=str, default='neurana-imaging', help='HCP subject number')
-    parser.add_argument('--output_prefix', type=str, default='roi_extract', help='HCP subject number')
+    parser.add_argument('--profile_name', type=str, default=None, help='Profile in aws credentials')
+    parser.add_argument('--bucket', type=str, default='neurana-imaging', help='Bucket')
+    parser.add_argument('--output_prefix', type=str, default='roi_extract', help='Output prefix')
   
     return parser.parse_args()
 
