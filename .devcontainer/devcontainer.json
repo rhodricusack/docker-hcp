@@ -14,8 +14,8 @@
 		}
 	},
 	"containerEnv": {
-		"AWS_ACCESS_KEY_ID":"AKIAIM3Z6QNF2VIWMJ5Q",
-		"AWS_SECRET_ACCESS_KEY":"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",
+		"AWS_ACCESS_KEY_ID":"XXXX",
+		"AWS_SECRET_ACCESS_KEY":"YYYY",
 	},
 	// Set *default* container specific settings.json values on container create.
 	"settings": { 
