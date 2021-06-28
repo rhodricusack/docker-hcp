@@ -4,7 +4,7 @@ import msgpack
 import msgpack_numpy as m
 from os import path
 
-def run_subjects(subjlist, wait_for_completion=True, output_bucket='neurana-imaging', output_prefix='hcp-test'):   
+def run_subjects(subjlist, do_wait_for_completion=True, output_bucket='neurana-imaging', output_prefix='hcp-test'):   
     response=[]
     for subj in subjlist:
         response.append(run_task(client, command = ['python3','/app/roi_extract_one_subject.py', "--subject", subj,  "--output_bucket",output_bucket, "--output_prefix",output_prefix ]))
