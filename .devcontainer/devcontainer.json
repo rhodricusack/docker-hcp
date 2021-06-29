@@ -45,9 +45,9 @@
 	// Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
 	"remoteUser": "vscode",
 
-	//"mounts": [
-	//	"source=${localEnv:HOME}${localEnv:USERPROFILE}\.aws\credentials,target=/home/vscode/.aws/credentials,type=bind,consistency=cached",
-	//	"source=${localWorkspaceFolder}\rois,target=/workspaces/docker-fsl/rois,type=bind,consistency=cached"
+	"mounts": [
+		"source=${localEnv:HOME}${localEnv:USERPROFILE}/.aws,target=/home/vscode/.aws,type=bind,consistency=cached",
+		"source=${localWorkspaceFolder}/rois,target=/workspaces/docker-fsl/rois,type=bind,consistency=cached"
 
 	]
 }
