@@ -1,4 +1,4 @@
-from launch_jobs.ecs_control import register_task, run_task, wait_for_completion
+from ecs_control import register_task, run_task, wait_for_completion
 import boto3
 import msgpack
 import msgpack_numpy as m
