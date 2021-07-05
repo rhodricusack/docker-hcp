@@ -142,8 +142,21 @@ def main(args):
     for task, taskcon in taskcondict.items():
         # For each task
         # Download file from HCP S3. 
+        hcpbucket = 'hcp-openaccess'
         hcpkey = f'HCP_1200/{sub}/MNINonLinear/Results/{task}/{task}_hp200_s2_level2.feat/{sub}_{task}_level2_hp200_s2.dscalar.nii'
-        s3.download_file('hcp-openaccess', hcpkey, '/tmp/timeseries.nii')     
+        try:
+            s3.download_file(hcpbucket, hcpkey, '/tmp/timeseries.nii')     
+        except ClientError as e:
+            if e.response['Error']['Code'] == '404':
+                print(f'Not found on s3 bucket:{hcpbucket} key:{hcpkey}')
+                raise
+            else:
+                print("Unexpected error: %s" % e)
+                raise
+        except:
+            print("Unexpected error: %s" % e)
+            raise
+
         task_img = nib.load('/tmp/timeseries.nii')
 
         # Pick out only voxels on the cortical surface
