@@ -15,7 +15,7 @@ def parse_args():
 
     parser.add_argument('--subject', type=str, default=None, help='HCP subject number')
     parser.add_argument('--profile_name', type=str, default=None, help='Profile in aws credentials')
-    parser.add_argument('--bucket', type=str, default='neurana-imaging', help='Bucket')
+    parser.add_argument('--output_bucket', type=str, default='neurana-imaging', help='Bucket')
     parser.add_argument('--output_prefix', type=str, default='roi_extract', help='Output prefix')
   
     return parser.parse_args()
@@ -142,7 +142,8 @@ def main(args):
     for task, taskcon in taskcondict.items():
         # For each task
         # Download file from HCP S3. 
-        s3.download_file('hcp-openaccess', f'HCP_1200/{sub}/MNINonLinear/Results/{task}/{task}_hp200_s2_level2.feat/{sub}_{task}_level2_hp200_s2.dscalar.nii', '/tmp/timeseries.nii')     
+        hcpkey = f'HCP_1200/{sub}/MNINonLinear/Results/{task}/{task}_hp200_s2_level2.feat/{sub}_{task}_level2_hp200_s2.dscalar.nii'
+        s3.download_file('hcp-openaccess', hcpkey, '/tmp/timeseries.nii')     
         task_img = nib.load('/tmp/timeseries.nii')
 
         # Pick out only voxels on the cortical surface
