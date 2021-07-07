@@ -111,9 +111,9 @@ def main(args):
     # List of tasks and contrasts to be analysed for each
     taskcondict = {
         'tfMRI_WM': [8, 9, 14, 15, 16, 17], # 2BK, 0BK, BODY, FACE, PLACE, TOOL
-        'GAMBLING': [0, 1],     # PUNISH, REWARD
+        'tfMRI_GAMBLING': [0, 1],     # PUNISH, REWARD
         'tfMRI_MOTOR': [0, 1, 2, 3, 4, 5],     # FACES, SHAPES
-        'LAMGUAGE': [0, 1],     # FACES, SHAPES
+        'tfMRI_LANGUAGE': [0, 1],     # FACES, SHAPES
         'tfMRI_SOCIAL': [0, 1],     # FACES, SHAPES
         'tfMRI_EMOTION': [0, 1],     # FACES, SHAPES
         }   
@@ -177,7 +177,7 @@ def main(args):
         msgpack.dump(meanact, f, default=m.encode)
 
     # Upload to s3
-    print(upload_file(path.join(outpth,outfn), args.bucket, path.join(args.output_prefix, outfn)))
+    print(upload_file(path.join(outpth,outfn), args.output_bucket, path.join(args.output_prefix, outfn)))
         
 if __name__=='__main__':
     args = parse_args()

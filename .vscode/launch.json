@@ -11,7 +11,7 @@
             "request": "launch",
             "program": "${file}",
             "console": "integratedTerminal",
-            "args": ["--subject", "178950", "--profile_name","hcp", "--output_bucket","hcp_test", "--output_prefix","chiara_test"]
+            "args": ["--subject", "178950", "--profile_name","hcp", "--output_bucket","neurana-imaging", "--output_prefix","hcp_test"]
         }
     ]
 }

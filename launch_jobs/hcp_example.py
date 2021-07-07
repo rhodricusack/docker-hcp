@@ -41,7 +41,7 @@ if __name__=='__main__':
     response = run_subjects(subjlist, output_bucket=output_bucket, output_prefix=output_prefix)
     allresults=get_results(subjlist, output_bucket=output_bucket, output_prefix=output_prefix )
     print('This is allresults    ')
-    print(allresults)
+    #print(allresults)
     print(len(allresults))
     print(list(allresults.keys()))
     np.save(("allresults.npy"),allresults)
