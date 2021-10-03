@@ -115,7 +115,7 @@ def main(args):
         'tfMRI_MOTOR': [0, 1, 2, 3, 4, 5],     # CUE, LF, LH, RF, RH, T
         'tfMRI_LANGUAGE': [0, 1],     # MATH, STORY 
         'tfMRI_SOCIAL': [0, 1],     # RANDOM, TOM
-        'RELATIONAL':[0, 1, 2, 3, 4, 5]   # MATCH, REL, MATCH-REL, REL-MATCH, neg_MATCH, neg_REL
+        'RELATIONAL':[0, 1, 2, 3, 4, 5],   # MATCH, REL, MATCH-REL, REL-MATCH, neg_MATCH, neg_REL
         'tfMRI_EMOTION': [0, 1],     # FACES, SHAPES
         }   
 
