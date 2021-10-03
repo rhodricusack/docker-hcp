@@ -112,9 +112,10 @@ def main(args):
     taskcondict = {
         'tfMRI_WM': [8, 9, 14, 15, 16, 17], # 2BK, 0BK, BODY, FACE, PLACE, TOOL
         'tfMRI_GAMBLING': [0, 1],     # PUNISH, REWARD
-        'tfMRI_MOTOR': [0, 1, 2, 3, 4, 5],     # FACES, SHAPES
-        'tfMRI_LANGUAGE': [0, 1],     # FACES, SHAPES
-        'tfMRI_SOCIAL': [0, 1],     # FACES, SHAPES
+        'tfMRI_MOTOR': [0, 1, 2, 3, 4, 5],     # CUE, LF, LH, RF, RH, T
+        'tfMRI_LANGUAGE': [0, 1],     # MATH, STORY 
+        'tfMRI_SOCIAL': [0, 1],     # RANDOM, TOM
+        'RELATIONAL':[0, 1, 2, 3, 4, 5]   # MATCH, REL, MATCH-REL, REL-MATCH, neg_MATCH, neg_REL
         'tfMRI_EMOTION': [0, 1],     # FACES, SHAPES
         }   
 
