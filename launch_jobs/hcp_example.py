@@ -60,14 +60,15 @@ if __name__=='__main__':
     print(list(allresults.keys()))
 
 
-    # Tasks we analysed
+
     taskcondict = {
         'tfMRI_WM': [8, 9, 14, 15, 16, 17], # 2BK, 0BK, BODY, FACE, PLACE, TOOL
         'tfMRI_GAMBLING': [0, 1],     # PUNISH, REWARD
-        'tfMRI_MOTOR': [0, 1, 2, 3, 4, 5],     #CUE, LF, LH, RF, RH, T
-        'tfMRI_LANGUAGE': [0, 1],   #MATH, STORY  
-        'tfMRI_SOCIAL': [0, 1],   #RANDOM, TOM  
-        'tfMRI_EMOTION': [0, 1],     #FACES, SHAPES
+        'tfMRI_MOTOR': [0, 1, 2, 3, 4, 5],     # CUE, LF, LH, RF, RH, T
+        'tfMRI_LANGUAGE': [0, 1],     # MATH, STORY 
+        'tfMRI_SOCIAL': [0, 1],     # RANDOM, TOM
+        'RELATIONAL':[0, 1, 2, 3, 4, 5],   # MATCH, REL, MATCH-REL, REL-MATCH, neg_MATCH, neg_REL
+        'tfMRI_EMOTION': [0, 1],     # FACES, SHAPES
         }
 
     DLPFroilist = [26, 67, 68, 70, 71, 73, 83, 84, 85, 86, 87, 96, 98, 206, 247, 148, 250, 251, 253, 264, 265, 266, 267, 276, 278]
