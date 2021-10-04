@@ -5,14 +5,13 @@ import msgpack_numpy as m
 from os import path
 import numpy as np
 import pandas as pd
-import statsmodels.api as sm
-from statsmodels.formula.api import ols
+
 
 def run_subjects(subjlist, do_wait_for_completion=True, output_bucket='neurana-imaging', output_prefix='hcp-test'):   
     response=[]
     for subj in subjlist:
         response.append(run_task(client, command = ['python3','/app/roi_extract_one_subject.py', "--subject", subj,  "--output_bucket",output_bucket, "--output_prefix",output_prefix ]))
-    
+        
     if do_wait_for_completion:
         wait_for_completion(client, response)
     
@@ -30,6 +29,9 @@ def get_results(subjlist, output_bucket=None, output_prefix=None):
             byte_data = data_file.read()
         x_rec = msgpack.unpackb(byte_data, object_hook=m.decode)
         allresults[sub] = x_rec
+
+
+        print(len(allresults[sub].keys()))
 
     return allresults
 
@@ -74,17 +76,21 @@ if __name__=='__main__':
     indexDF = ['tfMRI_WM_2BK', 'tfMRI_WM_0BK', 'tfMRI_WM_BODY', 'tfMRI_WM_FACE', 'tfMRI_WM_PLACE', 'tfMRI_WM_TOOL', 'tfMRI_GAMBLING_PUNISH', 'tfMRI_GAMBLING_REWARD', 'tfMRI_MOTOR_CUE', 'tfMRI_MOTOR_LF', 'tfMRI_MOTOR_LH', 'tfMRI_MOTOR_RF', 'tfMRI_MOTOR__RH', 'tfMRI_MOTOR_T', 'tfMRI_LANGUAGE_MATH', 'tfMRI_LANGUAGE_STORY', 'tfMRI_SOCIAL_RANDOM', 'tfMRI_SOCIAL_TOM', 'tfMRI_EMOTION_FACES', 'tfMRI_EMOTION_SHAPES']
     DLPFtoproi = np.zeros((len(subjlist),20,26)) # Create a matrix for storing ROIs' values: n subj,*task(6)*contrasts(20)*ROIs(26)
     ncon = 20
-
+    newlist = []
     for task, taskcons in taskcondict.items():
         for conind, con in enumerate(taskcons):
             #print(f'task {task} con {con}')
             dat = np.vstack([allresults[subj][task][conind,:] for subj in allresults])
+
             # take mean across subjects
             mnact = np.mean(dat, axis=0)
+            print(len(dat))
+
+            newlist.append(mnact)
+            print(len(newlist))
             # use argsort along roi axis to find top rois         
             sortedregions = np.argsort(mnact)
             print(sortedregions[-3:])
-            print(len(sortedregions))
             topROI = sortedregions[-3:]
             file = open(('TopROI.txt'),'a') 
             file.write("\n The 3 most active ROIs for task %s, contrast %s are %s"%(task,con,topROI))
@@ -109,12 +115,3 @@ if __name__=='__main__':
     np.save(("allresults.npy"), allresults)
     np.save(("topROI.npy"), topROI)  
     np.save(("DLPFCroi.npy"), DLPFtoproi)
-
-    ###### ANOVA  ######
-    df = (pd.DataFrame(numpy_array, columns=DLPFroilist, index=indexDF)
-    df
-    results = ols('MeanBVC ~ C(net2)', data=DLPFtoproi).fit()
-    table = sm.stats.anova_lm(results)
-    print ("Anova results for BVC")
-    print(table)
-    np.savetxt((os.path.join(self.resultspth,'AnovaBVCcorr%d'%(chunklen) + '.txt')), table, fmt='%s')
