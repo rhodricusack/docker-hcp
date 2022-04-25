@@ -19,7 +19,7 @@ session = boto3.Session(profile_name='hcp')
 s3 = session.client('s3')
 
 taskcondictnoneg = {
-    'tfMRI_WM': {5:'face', 6:'place', 7:'tool'}, # 0 2BK_BODY, 1 2BK_FACE, 2 2BK_PLACE, 3 2BK_TOOL, 4 0BK_BODY, 5 0BK_FACE, 6 0BK_PLACE, 7 0BK_TOOL, 8 2BK, 9 0BK, 10 2BK-0BK, 11 neg_2BK, 12 neg_0BK, 13 0BK-2BK, 14 BODY, 15 FACE, 16 PLACE, 17 TOOL, 18 BODY-AVG, 19 FACE-AVG, 20 PLACE-AVG, 21 TOOL-AVG, 22 neg_BODY, 23 neg_FACE, 24 neg_PLACE, 25 neg_TOOL, 26 AVG-BODY, 27 AVG-FACE, 28 AVG-PLACE, 29 VG-TOOL
+    'tfMRI_WM': {5:'face_minus_avg', 6:'place_minus_avg', 7:'tool_minus_avg'}, # 0 2BK_BODY, 1 2BK_FACE, 2 2BK_PLACE, 3 2BK_TOOL, 4 0BK_BODY, 5 0BK_FACE, 6 0BK_PLACE, 7 0BK_TOOL, 8 2BK, 9 0BK, 10 2BK-0BK, 11 neg_2BK, 12 neg_0BK, 13 0BK-2BK, 14 BODY, 15 FACE, 16 PLACE, 17 TOOL, 18 BODY-AVG, 19 FACE-AVG, 20 PLACE-AVG, 21 TOOL-AVG, 22 neg_BODY, 23 neg_FACE, 24 neg_PLACE, 25 neg_TOOL, 26 AVG-BODY, 27 AVG-FACE, 28 AVG-PLACE, 29 VG-TOOL
     }
 
 df=pd.DataFrame()
@@ -73,11 +73,11 @@ for task, taskcon in taskcondictnoneg.items():
         for onetask,taskname in taskcon.items():
             meanact={}
             meanact['sub']=sub
-            meanact['con_0bk']=taskname
+            meanact['contrast']=taskname
             for roiind, roi in enumerate(roilist):
                 sel=task_dat_surf[:, roi_dat == roi]
                 meanact[f"roi-{roi:03d}"] = np.mean(sel, 1)[onetask]
             df=df.append(meanact, ignore_index=True)
 
-df.to_csv('hcp_contasts.csv')
+df.to_csv('hcp_contasts_v2.csv')
 print(df)
