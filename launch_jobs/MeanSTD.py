@@ -98,14 +98,14 @@ aov=pg.anova(dv="Activation", between=['ROI', 'Contrast'], data=anova_df, detail
 print(aov)
 
 # Create 2 dfs for each hemisphere
-list_hem1 = ['26', '67', '68', '70', '71', '73', '83', '84', '85', '86', '87', '96', '98']
+list_hem1 = ['ROI 26', 'ROI 67', 'ROI 68', 'ROI 70', 'ROI 71', 'ROI 73', 'ROI 83', 'ROI 84', 'ROI 85', 'ROI 86', 'ROI 87', 'ROI 96', 'ROI 98']
 dict_hem1 = {}
 hem1 = pd.DataFrame(dict_hem1)
 for i in list_hem1: 
     df_hem1 = anova_df[(anova_df['ROI'] == i)]
     hem1 = pd.concat([hem1, df_hem1], axis=0, ignore_index=True)
 
-list_hem2 = ['206', '247', '248', '250', '251', '253', '263', '264', '265', '266', '267', '276', '278']
+list_hem2 = ['ROI206', 'ROI247', 'ROI248', 'ROI250', 'ROI251', 'ROI253', 'ROI263', 'ROI264', 'ROI265', 'ROI266', 'ROI267', 'ROI276', 'ROI278']
 dict_hem2 = {}
 hem2 = pd.DataFrame(dict_hem2)
 for r in list_hem2: 
