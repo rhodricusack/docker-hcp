@@ -4,14 +4,14 @@ from nilearn import plotting
 from nilearn import image
 import nilearn as nil
 import nibabel as nib
+import numpy as np
 
+from matplotlib import pyplot as plt
 
-imgr = nib.load('/home/ubuntu/Q1-Q6_RelatedParcellation210.R.CorticalAreas_dil_Colors.32k_fs_LR.dlabel.nii')
+for hemi in ['left','right']:
+    frontal = nib.load(f'/home/chiaracaldinelli/smartontheinside/smartontheinside/frontal.{hemi[0].upper()}.label.gii')
+    dat = frontal.agg_data('NIFTI_INTENT_LABEL')
+    print(f'Hemisphere {hemi} frontal voxels {np.sum(dat)}')
+    fig = plotting.plot_surf_stat_map(f'Q1-Q6_RelatedParcellation210.{hemi[0].upper()}.inflated_MSMAll_2_d41_WRN_DeDrift.32k_fs_LR.surf.gii', dat, hemi=hemi,threshold=1.,title=f'Surface {hemi} hemisphere', colorbar=True)
+    plt.savefig(f'test_{hemi}.png')
 
-
-# [for right]
-fig = plotting.plot_surf_stat_map('Q1-Q6_RelatedParcellation210.R.inflated_MSMAll_2_d41_WRN_DeDrift.32k_fs_LR.surf.gii', imgr.get_fdata(), hemi='right',threshold=1.,title='Surface right hemisphere', colorbar=True)
-
-print('hi')
-
-# fig = plotting.plot_surf_stat_map(fsaverage.infl_right, imgr.get_fdata(), hemi='right',threshold=1., bg_map=fsaverage.sulc_right,title='Surface right hemisphere', colorbar=True)
