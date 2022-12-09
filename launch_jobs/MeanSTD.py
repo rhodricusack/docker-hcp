@@ -104,6 +104,8 @@ hem1 = pd.DataFrame(dict_hem1)
 for i in list_hem1: 
     df_hem1 = anova_df[(anova_df['ROI'] == i)]
     hem1 = pd.concat([hem1, df_hem1], axis=0, ignore_index=True)
+    print('this is hemi')
+    print(hem1)
 
 list_hem2 = ['ROI206', 'ROI247', 'ROI248', 'ROI250', 'ROI251', 'ROI253', 'ROI263', 'ROI264', 'ROI265', 'ROI266', 'ROI267', 'ROI276', 'ROI278']
 dict_hem2 = {}
@@ -119,7 +121,7 @@ fig,ax=plt.subplots(nrows=2, figsize=(10,8))
 fig=interaction_plot(x=hem1['ROI'], trace=hem1['Contrast'], response=hem1['Activation'], ax=ax[0])
 fig=interaction_plot(x=hem2['ROI'], trace=hem2['Contrast'], response=hem2['Activation'], ax=ax[1])
 
-# fig=interaction_plot(x=anova_df['ROI'], trace=anova_df['Contrast'], response=anova_df['Activation'], ax=ax)
+fig=interaction_plot(x=anova_df['ROI'], trace=anova_df['Contrast'], response=anova_df['Activation'], ax=ax)
 fig.tight_layout()
 # fig.set_figheight(9)
 # fig.set_figwidth(15)

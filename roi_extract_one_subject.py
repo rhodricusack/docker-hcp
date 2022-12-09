@@ -177,7 +177,7 @@ def main(args):
             sel=task_dat_surf[:, roi_dat == roi]
             meanact[task][:, roiind] = np.mean(sel, 1)[taskcon]
 
-    # Write output file 
+    # Write output file
     outfn=f'sub-{sub}_roi.msgpack-numpy'
     outpth='/tmp'
     x_enc = msgpack.packb(meanact, default=m.encode)

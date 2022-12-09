@@ -73,7 +73,7 @@ if __name__=='__main__':
 
     ncon = len(indexDFnoneg)
     DLPFtoproi = np.zeros((len(subjlist),ncon,nDLPFroi)) # Create a matrix for storing DLPFC ROIs' values
-   
+    
     newlist = []
     for task, taskcons in taskcondictnoneg.items():
         for conind, con in enumerate(taskcons):
